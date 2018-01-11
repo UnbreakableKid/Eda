@@ -24,7 +24,7 @@ public class LinHashTable<E> extends HashTable<E> {
                 break;
             }
 
-            if (i > Size){
+            if (i == Size){
 
                 return -1;
             }
