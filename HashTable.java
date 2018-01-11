@@ -44,6 +44,8 @@ public abstract class HashTable<E> implements IHash<E> {
         Elemento[] table2;
         table2 = new Elemento[dim];
 
+        this.Size = dim;
+
     }
 
     public void tornarVazia() {
@@ -55,12 +57,24 @@ public abstract class HashTable<E> implements IHash<E> {
 
     public E procurar(E x) {
 
-        return null;
+        int pos = procPos(x);
+
+        if(pos == -1) {
+
+            return null;
+        }
+
+        return table[pos].data;
     }
+
 
     public void remove(E x) {
 
         ocupado--;
+
+        int i = procPos(x);
+
+        table[i].valid = false;
 
     }
 
