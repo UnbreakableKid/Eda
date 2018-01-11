@@ -1,16 +1,16 @@
 import  java.util.Iterator;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 public class LinkedLists<E> implements ILists<E>, Iterable<E> {
 
 
-    LNode<E> head, end;
+    LNode<E> head;
     int size;
 
     LinkedLists(){
 
         head = new LNode<>();
-        end = new LNode<>();
         size = 0;
     }
 
@@ -36,16 +36,7 @@ public class LinkedLists<E> implements ILists<E>, Iterable<E> {
     @Override
     public void remove(int i) {
 
-        LNode<E> c;
-
-        if (i<size/2) {
-
-            c = Forward(head, 0, i);
-
-        }else{
-
-            c = Backward(end, size, i);
-        }
+        LNode<E> c = Forward(head, 0, i);
 
         LNode<E> p = c.previous;
 
@@ -82,16 +73,6 @@ public class LinkedLists<E> implements ILists<E>, Iterable<E> {
         return Forward(current.next, i++, target);
     }
 
-    LNode<E> Backward( LNode<E> current, int i, int target) {
-
-        if (i== target){
-
-            return current;
-        }
-
-        return Backward(current.previous, i--, target);
-    }
-
 
     LNode<E> ForwardNode ( LNode<E> current, E target){
 
@@ -103,7 +84,7 @@ public class LinkedLists<E> implements ILists<E>, Iterable<E> {
 
         return ForwardNode(current.next, target);
     }
-    
+
 
     @Override
     public void add(E x) {
@@ -115,7 +96,6 @@ public class LinkedLists<E> implements ILists<E>, Iterable<E> {
         temp.previous = y;
         y.next = temp;
 
-
         size ++;
 
     }
@@ -123,16 +103,7 @@ public class LinkedLists<E> implements ILists<E>, Iterable<E> {
     @Override
     public void add(int i, E x) {
 
-        LNode<E> n;
-
-        if (i < size/2){
-
-            n = Forward(head, 0, i);
-
-        } else {
-
-            n = Backward(end, size,i);
-        }
+        LNode<E> n = Forward(head, 0, i);
 
         LNode<E> a = new LNode<>(x);
 
@@ -153,31 +124,14 @@ public class LinkedLists<E> implements ILists<E>, Iterable<E> {
     @Override
     public E get(int i) {
 
-        if (i < size/2) {
-
-            return Forward(head, 0, i).element;
-
-        }else{
-
-           return Backward(end, size, i).element;
-        }
+        return Forward(head, 0, i).element;
     }
 
 
     @Override
     public void set(int i, E y) {
 
-        LNode<E> node;
-
-        if (i < size/2) {
-
-            node = Forward(head, 0, i);
-
-        }else{
-
-            node = Backward(end, size, i);
-
-        }
+        LNode<E> node = Forward(head, 0, i);
         node.element = y;
 
     }
