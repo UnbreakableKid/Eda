@@ -29,13 +29,14 @@ public abstract class Hashtable<E> {
 
     public float factorCarga() {
 
-        return (float)ocupado / size;
+        return (float) ocupado / size;
 
     }
 
     int hash(int hashCode) {
 
         return hashCode % size;
+
     }
 
     protected abstract int procPos(E s);
@@ -61,6 +62,7 @@ public abstract class Hashtable<E> {
         if(pos == -1) {
 
             return null;
+
         }
 
         return table[pos].data;

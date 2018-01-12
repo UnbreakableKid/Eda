@@ -7,7 +7,7 @@ public class Agenda {
     private ArvVL <Contact> contacts;
     private boolean running;
     private Scanner s;
-    
+
     public static void main(String[] args) {
         Agenda a = new Agenda();
         a.start();
@@ -17,6 +17,7 @@ public class Agenda {
         contacts = new ArvVL<Contact>();
         running = true;
         s = new Scanner(System.in);
+
     }
 
     public void start(){

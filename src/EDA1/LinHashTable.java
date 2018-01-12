@@ -22,7 +22,7 @@ public class LinHashTable<E> extends Hashtable<E> {
 
                 break;
 
-            else if (table[h].data == s && (table[h].valid)){ //if they the same and valid
+            else if (table[h].data.equals(s) && (table[h].valid)){ //if they the same and valid
 
                 break;
 
