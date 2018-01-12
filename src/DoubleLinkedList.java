@@ -40,12 +40,6 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
 
         LNode<E> c;
 
-        if(i == 0)
-            i++;
-
-        if(i == size() - 1)
-            i--;
-
         if(i > size() || i < 0)
             return;
 
@@ -183,12 +177,6 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
     @Override
     public E get(int i) {
 
-        if(i == 0)
-            i++;
-
-        else if(i == size())
-            i--;
-
         if(i > size() || i < 0)
             return null;
 
@@ -209,11 +197,8 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
 
         LNode<E> node;
 
-        if(i == 0)
-            i++;
-
-        if(i == size())
-            i--;
+        if(i > size() || i < 0)
+            return;
 
         if (i < size/2) {
 
