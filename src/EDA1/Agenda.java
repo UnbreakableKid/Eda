@@ -189,10 +189,6 @@ public class Agenda {
         
         String name;
         int number;
-
-        public int hashCode(){
-            return Integer.hashCode(number);
-        }
         
         Contact(String _name, int _number){
             name = _name;
