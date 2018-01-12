@@ -9,12 +9,13 @@ public class LinkedListIIterator<E> implements java.util.Iterator<E> {
 
         current = start.next;
 
+
     }
 
     @Override
     public boolean hasNext() {
 
-        return current != null;
+        return current != null && current.element != null;
 
     }
 
@@ -24,6 +25,7 @@ public class LinkedListIIterator<E> implements java.util.Iterator<E> {
         if (!hasNext()){
 
             throw new NoSuchElementException();
+
         }
 
         E ele = current.element;
