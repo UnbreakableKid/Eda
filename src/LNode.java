@@ -6,9 +6,9 @@ public class LNode<E> {
 
     LNode() {this(null, null, null);}
 
-    LNode(E e, LNode<E> prev, LNode<E> node){
+    LNode(E e, LNode<E> prev, LNode<E> next){
 
-        next = node;
+        this.next = next;
         previous = prev;
         element = e;
     }

@@ -7,7 +7,6 @@ public class LinkedList<E> implements ILists<E>, Iterable<E> {
     int size;
 
     LinkedList(){
-
         head = new LNode<>();
         size = 0;
     }
@@ -34,13 +33,14 @@ public class LinkedList<E> implements ILists<E>, Iterable<E> {
     @Override
     public void remove(int i) {
 
-        LNode<E> c = Forward(head, 0, i);
+        if(i >= size() || i < 0)
+            return;
 
-        LNode<E> p = c.previous;
+        LNode<E> b = Forward(head, 0, i);
 
-        LNode<E> n = c.next;
+        LNode<E> c = b.next;
 
-        p = n.next;
+        b.next = c.next;
 
         size--;
 
@@ -49,87 +49,94 @@ public class LinkedList<E> implements ILists<E>, Iterable<E> {
     @Override
     public void remove(E x) {
 
-        LNode<E> y = ForwardNode (head, x);
+        LNode<E> b = ForwardNode (head.next, head, x);
 
-        LNode<E> p = y.previous;
+        if(b != null) {
 
-        LNode<E> n = p.next;
+            LNode<E> c = b.next;
 
-        p.next = n;
+            b.next = c.next;
 
-        size--;
+            size--;
+
+        }
     }
 
 
     LNode<E> Forward( LNode<E> current, int i, int target) {
 
         if (i == target) {
+
             return current;
 
         }
 
-        return Forward(current.next, i++, target);
+        return Forward(current.next, ++i, target);
     }
 
 
-    LNode<E> ForwardNode ( LNode<E> current, E target){
+    LNode<E> ForwardNode (LNode<E> current, LNode<E> previous, E target){
 
-        if (current.element == target){
+        if(current == null) {
 
-            return  current;
+            return null;
 
         }
 
-        return ForwardNode(current.next, target);
+        if (current.element == target){
+
+            return  previous;
+
+        }
+
+        return ForwardNode(current.next, previous, target);
     }
 
 
     @Override
     public void add(E x) {
 
-        LNode<E> y = Forward(head, 0, size);
-
-        LNode<E> temp = new  LNode<>(x);
-
-        temp.previous = y;
-        y.next = temp;
-
-        size ++;
+        add(size, x);
 
     }
 
     @Override
     public void add(int i, E x) {
 
-        LNode<E> n = Forward(head, 0, i);
+        LNode<E> b = Forward(head, 0, i);
 
-        LNode<E> a = new LNode<>(x);
+        LNode<E> n = b.next;
 
-        LNode<E> p = n.previous;
+        b.next = new LNode<>(x);
 
-        a.next = n;
+        if(n != null) {
+            b.next.next = n;
+        }
 
-        a.previous = p;
+        size ++;
 
-        n.previous = a;
 
-        p.next = a;
-
-        size++;
 
     }
 
     @Override
     public E get(int i) {
 
-        return Forward(head, 0, i).element;
+        if(i >= size() || i < 0)
+            return null;
+
+        return Forward(head, 0 - 1, i).element;
+
     }
 
 
     @Override
     public void set(int i, E y) {
 
-        LNode<E> node = Forward(head, 0, i);
+        if(i >= size() || i < 0)
+            return;
+
+        LNode<E> node = Forward(head, 0 - 1, i);
         node.element = y;
 
     }
@@ -137,15 +144,19 @@ public class LinkedList<E> implements ILists<E>, Iterable<E> {
     @Override
     public String toString() {
 
-        String s = "";
-        LNode<E> current = head.next;
+        String s = "[";
+        LNode<E> current = head;
 
-        while (current != null){
-
-            s+= current.element + " , ";
+        for(int i = 0; i < size; i++){
             current = current.next;
-
+            s += current.element;
+            if (i != size - 1) {
+                s += ", ";
+            }
         }
-     return s;
+
+        s += "]";
+
+        return s;
     }
 }
