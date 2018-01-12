@@ -40,6 +40,15 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
 
         LNode<E> c;
 
+        if(i == 0)
+            i++;
+
+        if(i == size() - 1)
+            i--;
+
+        if(i > size() || i < 0)
+            return;
+
         if (i < size/2) {
 
             c = Forward(head, 0, i);
@@ -59,6 +68,8 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
             p.next = n;
 
             n.previous = p;
+
+            size--;
 
         }
 
@@ -127,7 +138,7 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
 
         return ForwardNode(current.next, target);
     }
-    
+
 
     @Override
     public void add(E x) {
@@ -172,6 +183,15 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
     @Override
     public E get(int i) {
 
+        if(i == 0)
+            i++;
+
+        else if(i == size())
+            i--;
+
+        if(i > size() || i < 0)
+            return null;
+
         if (i < size/2) {
 
             return Forward(head, 0, i).element;
@@ -188,6 +208,12 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
     public void set(int i, E y) {
 
         LNode<E> node;
+
+        if(i == 0)
+            i++;
+
+        if(i == size())
+            i--;
 
         if (i < size/2) {
 
@@ -211,20 +237,18 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
     public String toString() {
 
         String s = "[";
-        LNode<E> current = head.next;
+        LNode<E> current = head;
 
-        while (current.element != null){
-
-            s += current.element;
+        for(int i = 0; i < size; i++){
             current = current.next;
-            if(current == end){
-                s += "]";
+            s += current.element;
+            if (i != size - 1) {
+                s += ", ";
             }
-            else {
-                s += " , ";
-            }
-
         }
+
+        s += "]";
+
      return s;
     }
 }
