@@ -143,6 +143,9 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
     @Override
     public void add(int i, E x) {
 
+        if(i > size())
+            return;
+
         LNode<E> n;
 
         if (i < size/2){
