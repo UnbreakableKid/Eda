@@ -1,5 +1,4 @@
 import  java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
 
@@ -40,16 +39,16 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
 
         LNode<E> c;
 
-        if(i > size() || i < 0)
+        if(i >= size() || i < 0)
             return;
 
         if (i < size/2) {
 
-            c = Forward(head, 0, i);
+            c = Forward(head, 0 - 1, i);
 
         }else{
 
-            c = Backward(end, size, i);
+            c = Backward(end, size + 1 - 1, i);
 
         }
 
@@ -89,30 +88,30 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
         }
     }
 
-    LNode<E> Forward( LNode<E> current, int i, int target) {
+    LNode<E> Forward(LNode<E> current, int at, int target) {
 
         if (current == end){
             return null;
         }
 
-        if (i == target) {
+        if (at == target) {
             return current;
         }
 
-        return Forward(current.next, ++i, target);
+        return Forward(current.next, ++at, target);
     }
 
-    LNode<E> Backward( LNode<E> current, int i, int target) {
+    LNode<E> Backward(LNode<E> current, int at, int target) {
 
         if (current == head){
             return null;
         }
 
-        if (i == target) {
+        if (at == target) {
             return current;
         }
 
-        return Backward(current.previous, --i, target);
+        return Backward(current.previous, --at, target);
     }
 
 
@@ -153,6 +152,7 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
         } else {
 
             n = Backward(end, size, i);
+
         }
 
         if(n != null) {
@@ -177,16 +177,16 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
     @Override
     public E get(int i) {
 
-        if(i > size() || i < 0)
+        if(i >= size() || i < 0)
             return null;
 
         if (i < size/2) {
 
-            return Forward(head, 0, i).element;
+            return Forward(head, 0 - 1, i).element;
 
         }else{
 
-           return Backward(end, size, i).element;
+           return Backward(end, size + 1, i).element;
 
         }
     }
@@ -197,7 +197,7 @@ public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
 
         LNode<E> node;
 
-        if(i > size() || i < 0)
+        if(i >= size() || i < 0)
             return;
 
         if (i < size/2) {
