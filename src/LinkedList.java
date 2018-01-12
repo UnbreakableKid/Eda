@@ -1,14 +1,12 @@
 import  java.util.Iterator;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
-public class LinkedLists<E> implements ILists<E>, Iterable<E> {
+public class LinkedList<E> implements ILists<E>, Iterable<E> {
 
 
     LNode<E> head;
     int size;
 
-    LinkedLists(){
+    LinkedList(){
 
         head = new LNode<>();
         size = 0;
