@@ -1,3 +1,5 @@
+package EDA1;
+
 public class LNode<E> {
 
     LNode<E> previous;

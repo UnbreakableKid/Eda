@@ -1,6 +1,8 @@
+package EDA1;
+
 import  java.util.Iterator;
 
-public class LinkedList<E> implements ILists<E>, Iterable<E> {
+public class LinkedList<E> implements List<E>, Iterable<E> {
 
 
     LNode<E> head;

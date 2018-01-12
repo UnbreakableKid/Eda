@@ -1,3 +1,5 @@
+package EDA1;
+
 public class Elemento<E> {
 
     E data;
@@ -8,6 +10,6 @@ public class Elemento<E> {
         this.data = data;
 
         this.valid = true;
-        }
 
+    }
 }

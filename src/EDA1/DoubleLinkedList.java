@@ -1,12 +1,14 @@
+package EDA1;
+
 import  java.util.Iterator;
 
-public class DoubleLinkedList<E> implements ILists<E>, Iterable<E> {
+public class DoubleLinkedList<E> implements List<E>, Iterable<E> {
 
 
     private LNode<E> head, end;
     private int size;
 
-    DoubleLinkedList(){
+    public DoubleLinkedList(){
 
         head = new LNode<>();
         end = new LNode<>();

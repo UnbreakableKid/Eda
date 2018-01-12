@@ -1,4 +1,6 @@
-public interface ILists<E> {
+package EDA1;
+
+public interface List<E> {
 
     public java.util.Iterator<E> iterator();
 

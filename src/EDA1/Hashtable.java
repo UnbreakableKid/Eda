@@ -1,18 +1,20 @@
-public abstract class HashTable<E> implements IHash<E> {
+package EDA1;
+
+public abstract class Hashtable<E> {
 
     int Size = 11;
     int ocupado = 0;
 
     Elemento<E>[] table;
 
-    public HashTable() {
+    public Hashtable() {
 
         table = new Elemento[Size];
 
     }
 
 
-    public HashTable(int n) {
+    public Hashtable(int n) {
 
         table = new Elemento[n];
 
@@ -133,7 +135,6 @@ public abstract class HashTable<E> implements IHash<E> {
     }
 
 
-    @Override
     public void print() {
 
         for(int i = 0; i < table.length; i++){

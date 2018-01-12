@@ -1,4 +1,6 @@
-public class LinHashTable<E> extends HashTable<E> {
+package EDA1;
+
+public class LinHashTable<E> extends Hashtable<E> {
 
 
     @Override
