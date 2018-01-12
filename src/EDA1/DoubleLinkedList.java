@@ -4,7 +4,6 @@ import  java.util.Iterator;
 
 public class DoubleLinkedList<E> implements List<E>, Iterable<E> {
 
-
     private LNode<E> head, end;
     private int size;
 
@@ -90,7 +89,7 @@ public class DoubleLinkedList<E> implements List<E>, Iterable<E> {
         }
     }
 
-    LNode<E> Forward(LNode<E> current, int at, int target) {
+    private LNode<E> Forward(LNode<E> current, int at, int target) {
 
         if (current == end){
             return null;
@@ -103,7 +102,7 @@ public class DoubleLinkedList<E> implements List<E>, Iterable<E> {
         return Forward(current.next, ++at, target);
     }
 
-    LNode<E> Backward(LNode<E> current, int at, int target) {
+    private LNode<E> Backward(LNode<E> current, int at, int target) {
 
         if (current == head){
             return null;
@@ -116,8 +115,7 @@ public class DoubleLinkedList<E> implements List<E>, Iterable<E> {
         return Backward(current.previous, --at, target);
     }
 
-
-    LNode<E> ForwardNode ( LNode<E> current, E target){
+    private LNode<E> ForwardNode ( LNode<E> current, E target){
 
         if (current.element == target){
 

@@ -2,23 +2,22 @@ package EDA1;
 
 public abstract class Hashtable<E> {
 
-    int Size = 11;
+    private static int DEF_SIZE = 11;
+    int size = 0;
     int ocupado = 0;
 
     Elemento<E>[] table;
 
     public Hashtable() {
 
-        table = new Elemento[Size];
+        this(DEF_SIZE);
 
     }
 
 
     public Hashtable(int n) {
 
-        table = new Elemento[n];
-
-        this.Size = n;
+        alocarTabela(n);
 
     }
 
@@ -30,29 +29,27 @@ public abstract class Hashtable<E> {
 
     public float factorCarga() {
 
-        return ocupado / Size;
+        return (float)ocupado / size;
+
     }
 
     int hash(int hashCode) {
 
-        return hashCode % Size;
+        return hashCode % size;
     }
 
-    public abstract int procPos(E s);
-
+    protected abstract int procPos(E s);
 
     public void alocarTabela(int dim) {
 
-        Elemento[] table2;
-        table2 = new Elemento[dim];
-
-        this.Size = dim;
+        table = (Elemento<E>[])new Elemento[dim];
+        this.size = dim;
 
     }
 
     public void tornarVazia() {
 
-        table = new Elemento[Size];
+        table = (Elemento<E>[])new Elemento[size];
 
     }
 
@@ -84,41 +81,41 @@ public abstract class Hashtable<E> {
 
         ocupado++;
 
-        table[procPos(x)].data = x;
+        table[procPos(x)] = new Elemento<>(x);
 
-        if (factorCarga() > 0.5) {
+        if (factorCarga() > 0.5f) {
             rehash();
         }
     }
 
     public void rehash() {
 
-        int now = Size * 2 + 1;
-        int oldN = Size;
+        int now = size * 2 + 1;
+        int oldN = size;
 
         do {
 
             now++;
 
-        }
+        } while (!isPrime(now));
 
-        while (!isPrime(now));
-        {
+        Elemento<E>[] old = table;
 
-            Elemento<E>[] old = table;
+        alocarTabela(now);
 
-            alocarTabela(now);
+        for (int i = 0; i < oldN; i++) {
 
-            for (int i = 0; i < oldN; i++) {
+            Elemento<E> ele = old[i];
 
-                Elemento<E> ele = old[i];
+            if (ele != null) {
 
-                if (ele != null) {
+                insere(ele.data);
 
-                    insere(ele.data);
-                }
             }
         }
+
+        size = now;
+
     }
 
     public boolean isPrime(int n) {
@@ -140,6 +137,22 @@ public abstract class Hashtable<E> {
         for(int i = 0; i < table.length; i++){
             if(table[i] != null && table[i].valid)
                 System.out.println(table[i].data);
+        }
+
+    }
+
+
+    public static class Elemento <E> {
+
+        E data;
+        boolean valid;
+
+        public Elemento(E data) {
+
+            this.data = data;
+
+            this.valid = true;
+
         }
 
     }

@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 public class LinkedListIIterator<E> implements java.util.Iterator<E> {
 
 
-    LNode<E> current;
+    private LNode<E> current;
 
     public LinkedListIIterator(LNode<E> start){
 

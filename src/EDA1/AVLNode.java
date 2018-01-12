@@ -12,11 +12,11 @@ public class AVLNode <E extends Comparable<? super E>> {
         return left;
     }
 
-    public AVLNode(E x, int h){
+    AVLNode(E x, int h){
         this(x, null, null, h);
     }
 
-    public AVLNode (E x, AVLNode<E> left, AVLNode<E> right, int h){
+    AVLNode (E x, AVLNode<E> left, AVLNode<E> right, int h){
         element = x;
         this.left = left;
         this.right = right;

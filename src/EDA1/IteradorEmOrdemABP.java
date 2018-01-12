@@ -30,7 +30,7 @@ public class IteradorEmOrdemABP <E extends Comparable<? super E>> implements jav
         }
     }
 
-    IteradorEmOrdemABP(ABNode<E> r, int capacity) {
+    public IteradorEmOrdemABP(ABNode<E> r, int capacity) {
         lost = new ArrayQueue<>(capacity);
         if(r != null) {
             doAll(r);

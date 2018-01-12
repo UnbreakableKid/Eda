@@ -4,11 +4,10 @@ import  java.util.Iterator;
 
 public class LinkedList<E> implements List<E>, Iterable<E> {
 
+    private LNode<E> head;
+    private int size;
 
-    LNode<E> head;
-    int size;
-
-    LinkedList(){
+    public LinkedList(){
         head = new LNode<>();
         size = 0;
     }

@@ -32,7 +32,7 @@ public class IteradorEmOrdemAVL<E extends Comparable<? super E>> implements java
         }
     }
 
-    IteradorEmOrdemAVL(AVLNode<E> r, int capacity) {
+    public IteradorEmOrdemAVL(AVLNode<E> r, int capacity) {
         lost = new ArrayQueue<>(capacity);
         if(r != null) {
             doAll(r);
